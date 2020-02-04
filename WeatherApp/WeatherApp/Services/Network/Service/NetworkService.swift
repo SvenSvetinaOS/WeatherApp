@@ -3,7 +3,7 @@ import Foundation
 class NetworkService {
     private let session = URLSession.shared
     private let decoder = JSONDecoder()
-    private let baseURL = Constants.baseURL
+    private let baseURL = APIConstants.baseURL
     
     func fetchData<T: Codable>(route: EndPointType, completion: @escaping (T) -> Void) {
         do {
@@ -32,17 +32,22 @@ class NetworkService {
         do {
             switch route.task {
             case .request:
-                request.setValue(Constants.json,
-                                 forHTTPHeaderField: Constants.HTTPHeaderField.contentType)
+                request.setValue(
+                    APIConstants.json,
+                    forHTTPHeaderField: APIConstants.HTTPHeaderField.contentType
+                )
                 
-            case .requestParameters(let bodyEncoding,
-                                    let bodyParameters,
-                                    let urlParameters):
+            case .requestParameters(
+                let bodyEncoding,
+                let bodyParameters,
+                let urlParameters):
                 
-                try self.configureParameters(bodyEncoding: bodyEncoding,
-                                             bodyParameters: bodyParameters,
-                                             urlParameters: urlParameters,
-                                             request: &request)
+                try self.configureParameters(
+                    bodyEncoding: bodyEncoding,
+                    bodyParameters: bodyParameters,
+                    urlParameters: urlParameters,
+                    request: &request
+                )
             }
             return request
         } catch {
@@ -50,14 +55,18 @@ class NetworkService {
         }
     }
     
-    private func configureParameters(bodyEncoding: ParameterEncoding,
-                                     bodyParameters: Parameters?,
-                                     urlParameters: Parameters?,
-                                     request: inout URLRequest) throws {
+    private func configureParameters(
+        bodyEncoding: ParameterEncoding,
+        bodyParameters: Parameters?,
+        urlParameters: Parameters?,
+        request: inout URLRequest
+    ) throws {
         do {
-            try bodyEncoding.encode(urlRequest: &request,
-                                    bodyParameters: bodyParameters,
-                                    urlParameters: urlParameters)
+            try bodyEncoding.encode(
+                urlRequest: &request,
+                bodyParameters: bodyParameters,
+                urlParameters: urlParameters
+            )
         } catch {
             throw error
         }

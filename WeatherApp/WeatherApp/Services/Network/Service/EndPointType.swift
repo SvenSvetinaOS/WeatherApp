@@ -1,5 +1,7 @@
 import Foundation
 
+typealias HTTPHeaders = [String: String]
+
 protocol EndPointType {
     var baseURL: URL { get }
     var path: String { get }

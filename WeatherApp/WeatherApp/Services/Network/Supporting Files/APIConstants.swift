@@ -1,4 +1,4 @@
-enum Constants {
+enum APIConstants {
     static let baseURL = "https://samples.openweathermap.org/data/2.5"
     static let urlEncoded = "application/x-www-form-urlencoded; charset=utf-8"
     static let json = "application/json"

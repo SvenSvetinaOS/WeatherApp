@@ -1,7 +1,7 @@
 import Foundation
 
-public struct URLParameterEncoder: ParameterEncoder {
-    public func encode(urlRequest: inout URLRequest, with parameters: Parameters) throws {
+struct URLParameterEncoder: ParameterEncoder {
+    func encode(urlRequest: inout URLRequest, with parameters: Parameters) throws {
         
         guard let url = urlRequest.url else { throw NetworkError.invalidURL }
         
@@ -11,15 +11,16 @@ public struct URLParameterEncoder: ParameterEncoder {
             urlComponents.queryItems = [URLQueryItem]()
             
             for (key,value) in parameters {
-                let queryItem = URLQueryItem(name: key,
-                                             value: "\(value)".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed))
+                let queryItem = URLQueryItem(
+                    name: key,
+                    value: "\(value)".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed))
                 urlComponents.queryItems?.append(queryItem)
             }
             urlRequest.url = urlComponents.url
         }
         
-        if urlRequest.value(forHTTPHeaderField: Constants.HTTPHeaderField.contentType) == nil {
-            urlRequest.setValue(Constants.urlEncoded, forHTTPHeaderField: Constants.HTTPHeaderField.contentType)
+        if urlRequest.value(forHTTPHeaderField: APIConstants.HTTPHeaderField.contentType) == nil {
+            urlRequest.setValue(APIConstants.urlEncoded, forHTTPHeaderField: APIConstants.HTTPHeaderField.contentType)
         }
     }
     

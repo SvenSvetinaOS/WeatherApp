@@ -27,7 +27,7 @@
 		26F94BB823E974650053281B /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F94BB723E974650053281B /* EndPointType.swift */; };
 		26F94BBA23E974E60053281B /* URLParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F94BB923E974E60053281B /* URLParameterEncoder.swift */; };
 		26F94BBC23E9755B0053281B /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F94BBB23E9755B0053281B /* NetworkError.swift */; };
-		26F94BBF23E97B0C0053281B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F94BBE23E97B0C0053281B /* Constants.swift */; };
+		26F94BBF23E97B0C0053281B /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F94BBE23E97B0C0053281B /* APIConstants.swift */; };
 		26F94BC523E989190053281B /* JSONParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F94BC423E989190053281B /* JSONParameterEncoder.swift */; };
 		26F94BC823E995600053281B /* WeatherEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F94BC723E995600053281B /* WeatherEndpoint.swift */; };
 /* End PBXBuildFile section */
@@ -55,7 +55,7 @@
 		26F94BB723E974650053281B /* EndPointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
 		26F94BB923E974E60053281B /* URLParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParameterEncoder.swift; sourceTree = "<group>"; };
 		26F94BBB23E9755B0053281B /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
-		26F94BBE23E97B0C0053281B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		26F94BBE23E97B0C0053281B /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		26F94BC423E989190053281B /* JSONParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParameterEncoder.swift; sourceTree = "<group>"; };
 		26F94BC723E995600053281B /* WeatherEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherEndpoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -166,7 +166,7 @@
 		26F94BBD23E979990053281B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				26F94BBE23E97B0C0053281B /* Constants.swift */,
+				26F94BBE23E97B0C0053281B /* APIConstants.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -262,7 +262,7 @@
 			files = (
 				26F94BC523E989190053281B /* JSONParameterEncoder.swift in Sources */,
 				26F94BB823E974650053281B /* EndPointType.swift in Sources */,
-				26F94BBF23E97B0C0053281B /* Constants.swift in Sources */,
+				26F94BBF23E97B0C0053281B /* APIConstants.swift in Sources */,
 				26F94BB323E9708B0053281B /* HTTPTask.swift in Sources */,
 				2672380223E86D7500C0457B /* ViewController.swift in Sources */,
 				2672382023E8707800C0457B /* Wind.swift in Sources */,
