@@ -5,8 +5,11 @@ struct URLParameterEncoder: ParameterEncoder {
         
         guard let url = urlRequest.url else { throw NetworkError.invalidURL }
         
-        if var urlComponents = URLComponents(url: url,
-                                             resolvingAgainstBaseURL: false), !parameters.isEmpty {
+        if
+            var urlComponents = URLComponents(
+                url: url,
+                resolvingAgainstBaseURL: false),
+            !parameters.isEmpty {
             
             urlComponents.queryItems = [URLQueryItem]()
             
