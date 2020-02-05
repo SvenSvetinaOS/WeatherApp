@@ -1,12 +1,15 @@
 import UIKit
 
-class ViewController: UIViewController {
-
+class WeatherDetailsViewController: UIViewController {
+    private let networkService = NetworkService()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        //API call test for Osijek,HR
+        networkService.fetchWeather(cityId: 3193935, completion: { weather in
+            print(weather)
+        })
     }
-
-
+    
 }
 

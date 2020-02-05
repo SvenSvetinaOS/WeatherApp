@@ -1,6 +1,6 @@
 struct WeatherInfo: Codable {
     let id: Int
     let main: String
-    let descriptor: String
+    let description: String
     let icon: String
 }

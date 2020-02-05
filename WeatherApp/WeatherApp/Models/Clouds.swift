@@ -1,3 +1,7 @@
 struct Clouds: Codable {
-    let all: Int
+    let cloudiness: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case cloudiness = "all"
+    }
 }
