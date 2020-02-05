@@ -1,6 +1,7 @@
 import Foundation
 
-class NetworkService {
+struct NetworkService {
+    static let shared = NetworkService()
     private let session = URLSession.shared
     private let decoder = JSONDecoder()
     private let baseURL = APIConstants.baseURL
@@ -70,6 +71,16 @@ class NetworkService {
         } catch {
             throw error
         }
+    }
+    
+    func fetchWeather(
+        cityId id: Int,
+        completion: @escaping (Weather) -> Void
+    ) {
+        fetchData(
+            route: WeatherEndPoint.current(cityId: id),
+            completion: completion
+        )
     }
     
 }
