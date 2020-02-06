@@ -1,7 +1,7 @@
 import Foundation
 
 enum WeatherEndPoint {
-    case current(cityId: Int)
+    case current(cityIds: [Int])
 }
 
 extension WeatherEndPoint: EndPointType {
@@ -13,21 +13,24 @@ extension WeatherEndPoint: EndPointType {
     var path: String {
         switch self {
         case .current:
-            return APIConstants.weather
+            return APIConstants.group
         }
     }
     
     var httpMethod: HTTPMethod {
-        return .get
+        switch self {
+        case .current:
+            return .get
+        }
     }
     
     var task: HTTPTask {
         switch self {
-        case .current(let cityId):
+        case .current(let cityIds):
             return .requestParameters(
                 encoding: .urlEncoding,
                 bodyParameters: nil,
-                urlParameters: [APIConstants.cityId: cityId,
+                urlParameters: [APIConstants.cityId: cityIds.map{String($0)}.joined(separator: ","),
                                 APIConstants.appId: APIConstants.apiKey
             ])
         }

@@ -1,6 +1,6 @@
 import Foundation
 
-struct NetworkService {
+class NetworkService {
     static let shared = NetworkService()
     private let session = URLSession.shared
     private let decoder = JSONDecoder()
@@ -18,7 +18,7 @@ struct NetworkService {
                     let result = try self.decoder.decode(T.self, from: data)
                     completion(result)
                 } catch (let error)  {
-                    print(error.localizedDescription)
+                    print(error)
                 }
             }.resume()
         } catch (let error) {
@@ -71,16 +71,6 @@ struct NetworkService {
         } catch {
             throw error
         }
-    }
-    
-    func fetchWeather(
-        cityId id: Int,
-        completion: @escaping (Weather) -> Void
-    ) {
-        fetchData(
-            route: WeatherEndPoint.current(cityId: id),
-            completion: completion
-        )
     }
     
 }
