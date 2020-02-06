@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		265B345023EC392F00B00852 /* MultiCitiesWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265B344F23EC392F00B00852 /* MultiCitiesWeather.swift */; };
 		266754DC23EB06B900BB67A9 /* CurrentWeatherNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266754DB23EB06B900BB67A9 /* CurrentWeatherNetworkService.swift */; };
 		267237FE23E86D7500C0457B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267237FD23E86D7500C0457B /* AppDelegate.swift */; };
 		2672380023E86D7500C0457B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267237FF23E86D7500C0457B /* SceneDelegate.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		265B344F23EC392F00B00852 /* MultiCitiesWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiCitiesWeather.swift; sourceTree = "<group>"; };
 		266754DB23EB06B900BB67A9 /* CurrentWeatherNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherNetworkService.swift; sourceTree = "<group>"; };
 		267237FA23E86D7500C0457B /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		267237FD23E86D7500C0457B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				2672381723E8707800C0457B /* Coordinates.swift */,
 				2672381423E8707800C0457B /* WeatherLocation.swift */,
 				2672381523E8707800C0457B /* Weather.swift */,
+				265B344F23EC392F00B00852 /* MultiCitiesWeather.swift */,
 				2672381923E8707800C0457B /* WeatherInfo.swift */,
 				2672381323E8707800C0457B /* WeatherMainInfo.swift */,
 				2672381823E8707800C0457B /* Wind.swift */,
@@ -325,6 +328,7 @@
 				2672380223E86D7500C0457B /* WeatherListViewController.swift in Sources */,
 				2672382023E8707800C0457B /* Wind.swift in Sources */,
 				2672381E23E8707800C0457B /* Clouds.swift in Sources */,
+				265B345023EC392F00B00852 /* MultiCitiesWeather.swift in Sources */,
 				2672382123E8707800C0457B /* WeatherInfo.swift in Sources */,
 				2672381B23E8707800C0457B /* WeatherMainInfo.swift in Sources */,
 				267237FE23E86D7500C0457B /* AppDelegate.swift in Sources */,

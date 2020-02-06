@@ -16,9 +16,10 @@ class NetworkService {
                 guard let data = data else { return }
                 do {
                     let result = try self.decoder.decode(T.self, from: data)
+                    print(result)
                     completion(result)
                 } catch (let error)  {
-                    print(error.localizedDescription)
+                    print(error)
                 }
             }.resume()
         } catch (let error) {

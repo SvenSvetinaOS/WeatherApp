@@ -1,6 +1,7 @@
 import UIKit
 
 class WeatherDetailsViewController: UIViewController {
+    
     private let currentWeatherNetworkService = CurrentWeatherNetworkService()
     private let cellHeight: CGFloat = 200.0
     private var weather = [Weather]()
@@ -13,23 +14,20 @@ class WeatherDetailsViewController: UIViewController {
         super.viewDidLoad()
         buildViews()
         populateCities()
-        
     }
     
     func populateCities() {
-        let cityIds = [3193935, 3186886, 3191648, 3190261]
+        let cityIds = [3193935, 3191648, 3190261]
         
-        for cityId in cityIds {
-            currentWeatherNetworkService.fetchWeather(
-                cityId: cityId,
-                completion: { [weak self] weather in
-                    self?.weather.append(weather)
-                    
-                    DispatchQueue.main.async {
-                        self?.tableView.reloadData()
-                    }
-            })
-        }
+        currentWeatherNetworkService.fetchWeather(
+            cityIds: cityIds,
+            completion: { [weak self] data in
+                self?.weather = data.list
+                
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+        })
     }
     
     func setupTableView() {
@@ -69,9 +67,9 @@ extension WeatherDetailsViewController:  UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WeatherInfoCell.identifier) as! WeatherInfoCell
-        let weatherForCell = weather[indexPath.row]
+        let weatherforCell = weather[indexPath.row]
         
-        cell.configure(model: weatherForCell, indexPath: indexPath)
+        cell.configure(model: weatherforCell)
         return cell
     }
     

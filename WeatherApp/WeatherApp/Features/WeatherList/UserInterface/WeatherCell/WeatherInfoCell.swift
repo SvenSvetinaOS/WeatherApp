@@ -1,12 +1,3 @@
-//
-//  WeatherInfoCell.swift
-//  WeatherApp
-//
-//  Created by Sven Svetina on 05/02/2020.
-//  Copyright © 2020 Sven Svetina. All rights reserved.
-//
-
-import Foundation
 import UIKit
 
 class WeatherInfoCell: UITableViewCell {
@@ -17,13 +8,7 @@ class WeatherInfoCell: UITableViewCell {
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var countryLabel: UILabel!
     
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
-    func configure(model: Weather, indexPath: IndexPath) {
-        
+    func configure(model: Weather) {
         nameLabel.text = model.name
         tempLabel.text = "\(model.weatherMainInfo.temp)F"
         countryLabel.text = "\(model.weatherLocation.country)"

@@ -5,7 +5,7 @@ enum APIConstants {
     static let appId = "APPID"
     static let apiKey = "bf9340088e273afa58702aeee6f26ffb"
     static let cityId = "id"
-    static let weather = "weather"
+    static let group = "group"
     
     enum HTTPHeaderField {
         static let authorization = "Authorization"
