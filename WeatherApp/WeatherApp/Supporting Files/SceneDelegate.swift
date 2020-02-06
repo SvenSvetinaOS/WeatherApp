@@ -7,7 +7,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
-        let viewController = WeatherDetailsViewController()
+        let viewController = WeatherListViewController()
         if let windowScene = scene as? UIWindowScene {
             window = UIWindow(windowScene: windowScene)
             window?.backgroundColor = .white

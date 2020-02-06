@@ -21,7 +21,6 @@ enum ParameterEncoding {
             case .urlEncoding:
                 guard let urlParameters = urlParameters else { return }
                 try URLParameterEncoder().encode(urlRequest: &urlRequest, with: urlParameters)
-                print(urlRequest)
                 
             case .jsonEncoding:
                 guard let bodyParameters = bodyParameters else { return }
