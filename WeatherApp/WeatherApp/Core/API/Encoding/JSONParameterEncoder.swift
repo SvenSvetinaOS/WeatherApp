@@ -13,7 +13,7 @@ struct JSONParameterEncoder: ParameterEncoder {
                     forHTTPHeaderField: APIConstants.HTTPHeaderField.contentType
                 )
             }
-        }catch {
+        } catch {
             throw NetworkError.encodingFailed
         }
     }
