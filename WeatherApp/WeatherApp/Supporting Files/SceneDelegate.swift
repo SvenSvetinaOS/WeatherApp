@@ -5,15 +5,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
 
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let _ = (scene as? UIWindowScene) else { return }
-        let viewController = WeatherListViewController()
+    func scene(
+        _ scene: UIScene,
+        willConnectTo session: UISceneSession,
+        options connectionOptions: UIScene.ConnectionOptions
+    ) {
         if let windowScene = scene as? UIWindowScene {
             window = UIWindow(windowScene: windowScene)
-            window?.backgroundColor = .white
-            let nc = UINavigationController(rootViewController: viewController)
-            window?.rootViewController = nc
-            window?.makeKeyAndVisible()
+            
+            let navigationService = NavigationService()
+            navigationService.pushWeatherListViewController(window: self.window!)
         }
     }
 
@@ -44,7 +45,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
 
 }
 
