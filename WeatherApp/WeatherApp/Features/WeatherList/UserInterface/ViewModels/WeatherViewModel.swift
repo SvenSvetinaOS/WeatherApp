@@ -13,11 +13,11 @@ struct WeatherViewModel {
         temp = weather.weatherMainInfo.temp
     }
     
-    func getTemp() -> String {
+    var temperature: String {
         return "\(Int(round(temp)))°"
     }
     
-    func getIconURL() -> URL? {
+    var iconURL: URL? {
         guard var imageID = weather.weather.first?.icon else { return nil }
         imageID.append("@2x.png")
         return URL(string: imageID, relativeTo: APIConstants.imageBaseURL)

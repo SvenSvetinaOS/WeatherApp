@@ -11,6 +11,7 @@ class WeatherInfoCell: UITableViewCell {
     var countryLabel: UILabel!
     var weatherIcon: UIImageView!
     var container: UIView!
+    let labelOffset: CGFloat = 20
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: WeatherInfoCell.identifier)
@@ -30,9 +31,9 @@ class WeatherInfoCell: UITableViewCell {
     func configure(from model: WeatherViewModel?) {
         if let model = model {
             cityNameLabel.text = model.city
-            tempLabel.text = model.getTemp()
+            tempLabel.text = model.temperature
             countryLabel.text = "\(model.country)"
-            weatherIcon.kf.setImage(with: model.getIconURL())
+            weatherIcon.kf.setImage(with: model.iconURL)
         } else {
             cityNameLabel.text = nil
             tempLabel.text = nil

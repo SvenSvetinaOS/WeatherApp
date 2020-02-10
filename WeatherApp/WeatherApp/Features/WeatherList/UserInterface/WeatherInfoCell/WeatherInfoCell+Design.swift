@@ -3,15 +3,15 @@ import PureLayout
 
 extension WeatherInfoCell {
     func buildViews() {
-        self.backgroundColor = .lightGray
+        backgroundColor = .lightGray
         container = UIView(forAutoLayout: ())
         addSubview(container)
         container.autoPinEdgesToSuperviewEdges()
         
         cityNameLabel = UILabel(forAutoLayout: ())
         container.addSubview(cityNameLabel)
-        cityNameLabel.autoPinEdge(.top, to: .top, of: container, withOffset: 20.0)
-        cityNameLabel.autoPinEdge(.leading, to: .leading, of: container, withOffset: 20.0)
+        cityNameLabel!.autoPinEdge(.top, to: .top, of: container, withOffset: labelOffset)
+        cityNameLabel!.autoPinEdge(.leading, to: .leading, of: container, withOffset: labelOffset)
         cityNameLabel.font = UIFont(name: "Helvetica", size: 28)
         cityNameLabel.autoAlignAxis(.vertical, toSameAxisOf: container)
         
@@ -29,7 +29,7 @@ extension WeatherInfoCell {
         countryLabel = UILabel(forAutoLayout: ())
         container.addSubview(countryLabel)
         countryLabel.autoPinEdge(.top, to: .bottom, of: cityNameLabel)
-        countryLabel.autoPinEdge(.leading, to: .leading, of: container, withOffset: 20.0)
+        countryLabel.autoPinEdge(.leading, to: .leading, of: container, withOffset: labelOffset)
         countryLabel.autoAlignAxis(.horizontal, toSameAxisOf: weatherIcon)
         
     }

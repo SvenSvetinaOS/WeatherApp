@@ -1,8 +1,8 @@
 class WeatherListPresenter {
     private var weatherUseCase: WeatherUseCaseProtocol
     var currentWeather = [WeatherViewModel]()
-    var fetchCompleted: (() -> ())?
-    var fetchFailed: ((_ error: String) -> ())?
+    var fetchCompleted: (() -> Void)?
+    var fetchFailed: ((_ error: String) -> Void)?
     
     init(weatherUseCase: WeatherUseCaseProtocol) {
         self.weatherUseCase = weatherUseCase

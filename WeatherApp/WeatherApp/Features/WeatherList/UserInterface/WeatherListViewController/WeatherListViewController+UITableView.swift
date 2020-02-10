@@ -19,7 +19,7 @@ extension WeatherListViewController:  UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: WeatherInfoCell.identifier) as! WeatherInfoCell
         
         let weatherForCell = weatherListPresenter.currentWeather[indexPath.row]
-            cell.configure(from: weatherForCell)
+        cell.configure(from: weatherForCell)
         
         return cell
     }
