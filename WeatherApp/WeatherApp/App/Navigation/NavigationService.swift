@@ -6,7 +6,7 @@ class NavigationService: NSObject {
     
     func pushWeatherListViewController(window: UIWindow?) {
         let currentWeatherNetworkService = CurrentWeatherNetworkService()
-        let cityService = CityService()
+        let cityService: CityServiceProtocol = CityService()
         let weatherDataRepository =  WeatherDataRepository(currentWeatherNetworkService: currentWeatherNetworkService, cityService: cityService)
         let weatherUseCase = WeatherUseCase(weatherDataRepository: weatherDataRepository)
         let weatherListPresenter = WeatherListPresenter(weatherUseCase: weatherUseCase)

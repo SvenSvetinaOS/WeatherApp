@@ -4,15 +4,10 @@ class WeatherDataRepository: WeatherDataRepositoryProtocol {
     private let cityService: CityServiceProtocol
     private var ids = [Int]()
     
-    init(currentWeatherNetworkService: CurrentWeatherNetworkService, cityService: CityService) {
+    init(currentWeatherNetworkService: CurrentWeatherNetworkService, cityService: CityServiceProtocol) {
         self.currentWeatherNetworkService = currentWeatherNetworkService
         self.cityService = cityService
-        getCities()
-    }
-    
-    func getCities() {
-        let cities = cityService.cities
-        ids = cities.map {$0.id}
+        self.ids = cityService.cities.map { $0.id }
     }
     
     func fetchWeather(completion: @escaping (MultiCitiesWeather) -> Void) {
