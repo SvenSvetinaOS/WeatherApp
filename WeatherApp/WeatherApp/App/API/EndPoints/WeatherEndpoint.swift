@@ -31,7 +31,8 @@ extension WeatherEndPoint: EndPointType {
                 encoding: .urlEncoding,
                 bodyParameters: nil,
                 urlParameters: [APIConstants.cityId: cityIds.map{String($0)}.joined(separator: ","),
-                                APIConstants.appId: APIConstants.apiKey
+                                APIConstants.appId: APIConstants.apiKey,
+                                APIConstants.unitFormat: APIConstants.metricUnits
             ])
         }
     }

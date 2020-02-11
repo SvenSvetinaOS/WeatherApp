@@ -2,37 +2,29 @@ import UIKit
 
 class WeatherListViewController: UIViewController {
     
-    private let currentWeatherNetworkService = CurrentWeatherNetworkService()
+    var weatherListPresenter: WeatherListPresenter!
     private let weatherTitle = "Weather"
     let cellHeight: CGFloat = 200.0
-    var weather = [Weather]()
+    var weather = [WeatherViewModel]()
     let tableView = UITableView()
     var refreshControl = UIRefreshControl()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        buildViews()
-        populateCities()
+    convenience init (weatherListPresenter: WeatherListPresenter) {
+        self.init()
+        self.weatherListPresenter = weatherListPresenter
     }
     
-    func populateCities() {
-        let cityIds = [3193935, 3191648, 3190261]
-        
-        currentWeatherNetworkService.fetchWeather(
-            cityIds: cityIds,
-            completion: { [weak self] data in
-                self?.weather = data.list
-                
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                }
-        })
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupPresenterCompletions()
+        buildViews()
+        weatherListPresenter.getWeather()
     }
     
     func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UINib(nibName: WeatherInfoCell.identifier, bundle: nil), forCellReuseIdentifier: WeatherInfoCell.identifier)
+        tableView.register(WeatherInfoCell.self, forCellReuseIdentifier: WeatherInfoCell.identifier)
     }
     
     func buildViews() {
@@ -47,6 +39,18 @@ class WeatherListViewController: UIViewController {
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
     }
     
+        func setupPresenterCompletions() {
+            weatherListPresenter.fetchCompleted = { [weak self] in
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+            }
+            weatherListPresenter.fetchFailed = { error in
+                print(error)
+            }
+        }
+    
 }
+
 
 

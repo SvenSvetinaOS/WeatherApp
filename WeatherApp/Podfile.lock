@@ -1,0 +1,22 @@
+PODS:
+  - Kingfisher (5.13.0):
+    - Kingfisher/Core (= 5.13.0)
+  - Kingfisher/Core (5.13.0)
+  - PureLayout (3.1.5)
+
+DEPENDENCIES:
+  - Kingfisher (~> 5.0)
+  - PureLayout
+
+SPEC REPOS:
+  trunk:
+    - Kingfisher
+    - PureLayout
+
+SPEC CHECKSUMS:
+  Kingfisher: 0d334cada987fcddbe9b5cec516406e1ee9d4748
+  PureLayout: 9b4ad47b2f0388c84ff534af23d96e720c1b875a
+
+PODFILE CHECKSUM: 68afd39563f084b87a2fa7f6ae3889dbd82498b6
+
+COCOAPODS: 1.8.4

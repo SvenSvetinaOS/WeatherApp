@@ -1,0 +1,74 @@
+[
+    {
+        "id": 3193935,
+        "name": "Osijek",
+        "country": "HR",
+        "coord": {
+            "lon": 18.69389,
+            "lat": 45.551109
+        }
+    },
+    {
+        "id": 3201047,
+        "name": "Dubrovnik",
+        "country": "HR",
+        "coord": {
+            "lon": 18.092159,
+            "lat": 42.648071
+        }
+    },
+    {
+        "id": 3190261,
+        "name": "Split",
+        "country": "HR",
+        "coord": {
+            "lon": 16.43915,
+            "lat": 43.508911
+        }
+    },
+    {
+        "id": 3186886,
+        "name": "Zagreb",
+        "country": "HR",
+        "coord": {
+            "lon": 15.97798,
+            "lat": 45.814442
+        }
+    },
+    {
+        "id": 3192224,
+        "name": "Pula",
+        "country": "HR",
+        "coord": {
+            "lon": 13.84806,
+            "lat": 44.868328
+        }
+    },
+    {
+        "id": 3198259,
+        "name": "Karlovac",
+        "country": "HR",
+        "coord": {
+            "lon": 15.54778,
+            "lat": 45.487221
+        }
+    },
+    {
+        "id": 3186952,
+        "name": "Zadar",
+        "country": "HR",
+        "coord": {
+            "lon": 15.24222,
+            "lat": 44.11972
+        }
+    },
+    {
+        "id": 3191648,
+        "name": "Rijeka",
+        "country": "HR",
+        "coord": {
+            "lon": 14.40917,
+            "lat": 45.34306
+        }
+    },
+]

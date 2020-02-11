@@ -12,15 +12,15 @@ extension WeatherListViewController: UITableViewDelegate {
 
 extension WeatherListViewController:  UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return weather.count
+        return weatherListPresenter.currentWeather.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WeatherInfoCell.identifier) as! WeatherInfoCell
-        let weatherforCell = weather[indexPath.row]
         
-        cell.configure(model: weatherforCell)
+        let weatherForCell = weatherListPresenter.currentWeather[indexPath.row]
+        cell.configure(from: weatherForCell)
+        
         return cell
     }
-    
 }

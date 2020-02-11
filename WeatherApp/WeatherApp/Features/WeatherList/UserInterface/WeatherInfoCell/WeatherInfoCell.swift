@@ -1,19 +1,46 @@
 import UIKit
+import Kingfisher
 
 class WeatherInfoCell: UITableViewCell {
     
-    static let identifier = String(describing: WeatherInfoCell.self)
+    static let identifier = String(describing: self)
+    static let bundle = Bundle(for: WeatherInfoCell.self)
     
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var tempLabel: UILabel!
-    @IBOutlet weak var countryLabel: UILabel!
+    var cityNameLabel: UILabel!
+    var tempLabel: UILabel!
+    var countryLabel: UILabel!
+    var weatherIcon: UIImageView!
+    var container: UIView!
+    let labelOffset: CGFloat = 20
     
-    func configure(model: Weather) {
-        nameLabel.text = model.name
-        tempLabel.text = "\(model.weatherMainInfo.temp)F"
-        countryLabel.text = "\(model.weatherLocation.country)"
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: WeatherInfoCell.identifier)
+        buildViews()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        buildViews()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        configure(from: nil)
+    }
+    
+    func configure(from model: WeatherViewModel?) {
+        if let model = model {
+            cityNameLabel.text = model.city
+            tempLabel.text = model.temperature
+            countryLabel.text = "\(model.country)"
+            weatherIcon.kf.setImage(with: model.iconURL)
+        } else {
+            cityNameLabel.text = nil
+            tempLabel.text = nil
+            countryLabel.text = nil
+        }
         
-        nameLabel.sizeToFit()
+        cityNameLabel.sizeToFit()
         tempLabel.sizeToFit()
         countryLabel.sizeToFit()
     }
