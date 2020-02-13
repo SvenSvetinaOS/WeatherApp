@@ -3,4 +3,5 @@ struct City: Codable {
     let name: String
     let country: String
     let coord: Coordinates
+    let timezone: Double?
 }

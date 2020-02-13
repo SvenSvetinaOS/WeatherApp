@@ -1,6 +1,8 @@
 import Foundation
-struct WeatherViewModel {
 
+struct WeatherViewModel {
+    
+    let id: Int
     let weather: Weather
     let city: String
     let country: String
@@ -18,6 +20,7 @@ struct WeatherViewModel {
     
     init(weather: Weather) {
         self.weather = weather
+        self.id = weather.id
         city = weather.name
         country = weather.weatherLocation.country
         temp = weather.weatherMainInfo.temp

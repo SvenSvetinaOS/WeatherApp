@@ -10,6 +10,7 @@ enum APIConstants {
     static let group = "group"
     static let unitFormat = "units"
     static let metricUnits = "metric"
+    static let forecast = "forecast"
     
     enum HTTPHeaderField {
         static let authorization = "Authorization"

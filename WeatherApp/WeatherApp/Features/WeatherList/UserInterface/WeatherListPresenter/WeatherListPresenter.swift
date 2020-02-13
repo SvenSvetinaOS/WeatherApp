@@ -1,11 +1,13 @@
 class WeatherListPresenter {
     private var weatherUseCase: WeatherUseCaseProtocol
+    private var navigationService: NavigationService
     var currentWeather = [WeatherViewModel]()
     var fetchCompleted: (() -> Void)?
     var fetchFailed: ((_ error: String) -> Void)?
     
-    init(weatherUseCase: WeatherUseCaseProtocol) {
+    init(weatherUseCase: WeatherUseCaseProtocol, navigationService: NavigationService) {
         self.weatherUseCase = weatherUseCase
+        self.navigationService = navigationService
     }
     
     func mapToViewModels(weather: [Weather]) {
@@ -18,6 +20,10 @@ class WeatherListPresenter {
             self.mapToViewModels(weather: data.list)
             self.fetchCompleted?()
         })
+    }
+    
+    func weatherCellTapped(weatherViewModel: WeatherViewModel) {
+        navigationService.pushWeatherDetailsViewController(weatherViewModel: weatherViewModel)
     }
     
 }
