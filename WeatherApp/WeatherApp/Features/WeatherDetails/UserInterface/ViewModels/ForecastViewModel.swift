@@ -3,10 +3,10 @@ import Foundation
 struct ForecastViewModel {
     let forecast: ForecastInfo!
     let temp: Double
-    private let timeUTC: Double
-    private let time: String
-    private var timezone: Double?
-    private let weatherIconID: String?
+    let timeUTC: Double
+    let time: String
+    let timezone: Double?
+    let weatherIconID: String?
     
     var iconURL: URL? {
         guard var imageID = forecast.weather.first?.icon else { return nil }
