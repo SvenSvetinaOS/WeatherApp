@@ -32,6 +32,8 @@ class WeatherListViewController: UIViewController {
         
         view.addSubview(tableView)
         navigationItem.title = weatherTitle
+        
+        tableView.backgroundColor = .lightGray
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true

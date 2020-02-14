@@ -6,6 +6,7 @@ extension WeatherListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        weatherListPresenter.weatherCellTapped(weatherViewModel: weatherListPresenter.currentWeather[indexPath.row])
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

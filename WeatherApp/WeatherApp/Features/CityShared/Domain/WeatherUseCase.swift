@@ -8,4 +8,8 @@ class WeatherUseCase: WeatherUseCaseProtocol {
     func getCurrentWeather(completion: @escaping (MultiCitiesWeather) -> Void) {
         weatherDataRepository.fetchWeather(completion: completion)
     }
+    
+    func getForecast(cityId: Int, completion: @escaping (Forecast) -> Void) {
+        weatherDataRepository.fetchForecast(cityId: cityId, completion: completion)
+    }
 }

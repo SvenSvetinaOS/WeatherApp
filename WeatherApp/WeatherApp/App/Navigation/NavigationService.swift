@@ -6,18 +6,31 @@ class NavigationService: NSObject {
     
     func pushWeatherListViewController(window: UIWindow?) {
         let currentWeatherNetworkService = CurrentWeatherNetworkService()
+        let forecastNetworkService = ForecastNetworktService()
         let cityService: CityServiceProtocol = CityService()
-        let weatherDataRepository =  WeatherDataRepository(currentWeatherNetworkService: currentWeatherNetworkService, cityService: cityService)
+        let weatherDataRepository =  WeatherDataRepository(
+            currentWeatherNetworkService: currentWeatherNetworkService,
+            forecastNetworkService: forecastNetworkService,
+            cityService: cityService)
         let weatherUseCase = WeatherUseCase(weatherDataRepository: weatherDataRepository)
-        let weatherListPresenter = WeatherListPresenter(weatherUseCase: weatherUseCase)
+        let weatherListPresenter = WeatherListPresenter(weatherUseCase: weatherUseCase, navigationService: self)
         let weatherVC = WeatherListViewController(weatherListPresenter: weatherListPresenter)
         rootNavigationController.pushViewController(weatherVC, animated: true)
         window?.rootViewController = rootNavigationController
         window?.makeKeyAndVisible()
     }
     
-    func pushWeatherDetailsViewController() {
-        //TODO: Not implemented
+    func pushWeatherDetailsViewController(weatherViewModel: WeatherViewModel) {
+        let currentWeatherNetworkService = CurrentWeatherNetworkService()
+        let forecastNetworkService = ForecastNetworktService()
+        let cityService: CityServiceProtocol = CityService()
+        let weatherDataRepository =  WeatherDataRepository(currentWeatherNetworkService: currentWeatherNetworkService,
+                                                           forecastNetworkService: forecastNetworkService,
+                                                           cityService: cityService)
+        let weatherUseCase = WeatherUseCase(weatherDataRepository: weatherDataRepository)
+        let weatherDetailsPresenter = WeatherDetailsPresenter(weatherUseCase: weatherUseCase, weatherViewModel: weatherViewModel)
+        let weatherDetailsVC = WeatherDeatilsViewController(weatherDetailsPresenter: weatherDetailsPresenter)
+        rootNavigationController.pushViewController(weatherDetailsVC, animated: true)
     }
     
 }
