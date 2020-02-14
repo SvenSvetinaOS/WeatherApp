@@ -1,11 +1,5 @@
 class DependencyContainer {
-    var weatherUseCase: WeatherUseCase!
-    
-    init() {
-        self.weatherUseCase = createdUseCase
-    }
-    
-    var createdUseCase: WeatherUseCase {
+    var weatherUseCase: WeatherUseCase {
         let currentWeatherNetworkService = CurrentWeatherNetworkService()
         let forecastNetworkService = ForecastNetworktService()
         let cityService = CityService()
