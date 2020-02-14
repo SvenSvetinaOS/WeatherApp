@@ -1,19 +1,12 @@
 import UIKit
 
 class NavigationService: NSObject {
-    
-    let rootNavigationController = UINavigationController(navigationBarClass: nil, toolbarClass: nil)
+    private let rootNavigationController = UINavigationController(navigationBarClass: nil, toolbarClass: nil)
+    private let dependencyContainer = DependencyContainer()
     
     func pushWeatherListViewController(window: UIWindow?) {
-        let currentWeatherNetworkService = CurrentWeatherNetworkService()
-        let forecastNetworkService = ForecastNetworktService()
-        let cityService: CityServiceProtocol = CityService()
-        let weatherDataRepository =  WeatherDataRepository(
-            currentWeatherNetworkService: currentWeatherNetworkService,
-            forecastNetworkService: forecastNetworkService,
-            cityService: cityService)
-        let weatherUseCase = WeatherUseCase(weatherDataRepository: weatherDataRepository)
-        let weatherListPresenter = WeatherListPresenter(weatherUseCase: weatherUseCase, navigationService: self)
+        let weatherListPresenter = WeatherListPresenter(weatherUseCase: dependencyContainer.weatherUseCase,
+                                                        navigationService: self)
         let weatherVC = WeatherListViewController(weatherListPresenter: weatherListPresenter)
         rootNavigationController.pushViewController(weatherVC, animated: true)
         window?.rootViewController = rootNavigationController
@@ -21,16 +14,10 @@ class NavigationService: NSObject {
     }
     
     func pushWeatherDetailsViewController(weatherViewModel: WeatherViewModel) {
-        let currentWeatherNetworkService = CurrentWeatherNetworkService()
-        let forecastNetworkService = ForecastNetworktService()
-        let cityService: CityServiceProtocol = CityService()
-        let weatherDataRepository =  WeatherDataRepository(currentWeatherNetworkService: currentWeatherNetworkService,
-                                                           forecastNetworkService: forecastNetworkService,
-                                                           cityService: cityService)
-        let weatherUseCase = WeatherUseCase(weatherDataRepository: weatherDataRepository)
-        let weatherDetailsPresenter = WeatherDetailsPresenter(weatherUseCase: weatherUseCase, weatherViewModel: weatherViewModel)
-        let weatherDetailsVC = WeatherDeatilsViewController(weatherDetailsPresenter: weatherDetailsPresenter)
-        rootNavigationController.pushViewController(weatherDetailsVC, animated: true)
+        let weatherDetailsPresenter = WeatherDetailsPresenter(weatherUseCase: dependencyContainer.weatherUseCase,
+                                                              weatherViewModel: weatherViewModel)
+        let weatherDetailsViewController = WeatherDeatilsViewController(weatherDetailsPresenter: weatherDetailsPresenter)
+        rootNavigationController.pushViewController(weatherDetailsViewController, animated: true)
     }
     
 }

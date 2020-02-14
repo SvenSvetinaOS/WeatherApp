@@ -32,7 +32,7 @@ class WeatherInfoCell: UITableViewCell {
         if let model = model {
             cityNameLabel.text = model.city
             tempLabel.text = model.temperature
-            countryLabel.text = "\(model.country)"
+            countryLabel.text = String(model.country)
             weatherIcon.kf.setImage(with: model.iconURL)
         } else {
             cityNameLabel.text = nil

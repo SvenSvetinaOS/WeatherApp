@@ -18,12 +18,12 @@ class ForecastView: UIView {
     
     func configureForecastView(_ model: ForecastViewModel?) {
         if let model = model {
-            temperatureLabel.text = "\(Int(round(model.temp)))°"
+            temperatureLabel.text = String(format: AppTexts.temperature, Int(round(model.temp)))
             dayLabel.text = model.day
             weatherIcon.kf.setImage(with: model.iconURL)
         } else {
-            temperatureLabel.text = "error"
-            dayLabel.text = "error"
+            temperatureLabel.text = AppTexts.error
+            dayLabel.text = AppTexts.error
             weatherIcon.image = nil
         }
     }

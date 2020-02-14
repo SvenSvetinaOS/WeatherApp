@@ -23,11 +23,12 @@ class WeatherDetailsCell: UICollectionViewCell {
     }
     
     func configureWeather(from model: WeatherViewModel?) {
+        
         if let model = model {
             cityNameLabel.text = model.city
             tempLabel.text = model.temperature
-            tempMinLabel.text = "Min Temp: \(Int(round(model.weather.weatherMainInfo.tempMin)))°"
-            tempMaxLabel.text = "Max Temp: \(Int(round(model.weather.weatherMainInfo.tempMax)))°"
+            tempMinLabel.text = String(format: AppTexts.minTemp, Int(round(model.weather.weatherMainInfo.tempMin)))
+            tempMaxLabel.text = String(format: AppTexts.maxTemp, Int(round(model.weather.weatherMainInfo.tempMin)))
             weatherIcon.kf.setImage(with: model.iconURL)
         } else {
             cityNameLabel.text = nil
