@@ -1,3 +1,5 @@
+import RxSwift
+
 class WeatherDataRepository: WeatherDataRepositoryProtocol {
     
     private let currentWeatherNetworkService: CurrentWeatherNetworkService
@@ -15,14 +17,12 @@ class WeatherDataRepository: WeatherDataRepositoryProtocol {
         self.forecastNetworkService = forecastNetworkService
     }
     
-    func fetchWeather(completion: @escaping (MultiCitiesWeather) -> Void) {
-        return currentWeatherNetworkService.fetchWeather(cityIds: ids, completion: { weather in
-            completion(weather)
-        })
+    func fetchWeather()  -> Single<MultiCitiesWeather> {
+        return currentWeatherNetworkService.fetchWeather(cityIds: ids)
     }
     
-    func fetchForecast(cityId: Int, completion: @escaping (Forecast) -> Void) {
-        return forecastNetworkService.fetchForecast(cityId: cityId, completion: completion)
+    func fetchForecast(cityId: Int)  -> Single<Forecast> {
+        return forecastNetworkService.fetchForecast(cityId: cityId)
     }
     
 }

@@ -1,28 +1,32 @@
 import Foundation
+import RxSwift
 
 class NetworkService {
-    static let shared = NetworkService()
     private let session = URLSession.shared
     private let decoder = JSONDecoder()
     private let baseURL = APIConstants.baseURL
     
-    func fetchData<T: Codable>(route: EndPointType, completion: @escaping (T) -> Void) {
-        do {
-            let request = try self.buildRequest(from: route)
-            session.dataTask(with: request) { data, response, error in
-                if error != nil {
-                    print(error.debugDescription)
-                }
-                guard let data = data else { return }
-                do {
-                    let result = try self.decoder.decode(T.self, from: data)
-                    completion(result)
-                } catch (let error)  {
-                    print(error)
-                }
-            }.resume()
-        } catch (let error) {
-            print(error)
+    func fetchData<T: Codable>(route: EndPointType) -> Single<T> {
+        return Single<T>.create { [weak self] observer in
+            guard let self = self else { return Disposables.create() }
+            do {
+                let request = try self.buildRequest(from: route)
+                self.session.dataTask(with: request) { data, response, error in
+                    if error != nil {
+                        observer(.error(error!))
+                    }
+                    guard let data = data else { return }
+                    do {
+                        let result = try self.decoder.decode(T.self, from: data)
+                        observer(.success(result))
+                    } catch (let error)  {
+                        observer(.error(error))
+                    }
+                }.resume()
+            } catch (let error) {
+                observer(.error(error))
+            }
+            return Disposables.create()
         }
     }
     

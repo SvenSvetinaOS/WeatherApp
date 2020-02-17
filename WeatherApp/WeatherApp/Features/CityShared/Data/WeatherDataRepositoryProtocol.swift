@@ -1,4 +1,6 @@
+import RxSwift
+
 protocol WeatherDataRepositoryProtocol {
-    func fetchWeather(completion: @escaping (MultiCitiesWeather) -> Void)
-    func fetchForecast(cityId: Int, completion: @escaping (Forecast) -> Void)
+    func fetchWeather() -> Single<MultiCitiesWeather>
+    func fetchForecast(cityId: Int)  -> Single<Forecast>
 }

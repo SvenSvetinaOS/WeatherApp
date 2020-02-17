@@ -3,4 +3,5 @@ class AppTexts {
     static let maxTemp = "Max Temp: %d°"
     static let temperature = "%d°"
     static let error = "error"
+    static let weatherTitle = "Weather"
 }

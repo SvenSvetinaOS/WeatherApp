@@ -1,3 +1,5 @@
+import RxSwift
+
 class WeatherUseCase: WeatherUseCaseProtocol {
     private var weatherDataRepository: WeatherDataRepositoryProtocol!
     
@@ -5,11 +7,11 @@ class WeatherUseCase: WeatherUseCaseProtocol {
         self.weatherDataRepository = weatherDataRepository
     }
     
-    func getCurrentWeather(completion: @escaping (MultiCitiesWeather) -> Void) {
-        weatherDataRepository.fetchWeather(completion: completion)
+    func getCurrentWeather() -> Single<MultiCitiesWeather> {
+        weatherDataRepository.fetchWeather()
     }
     
-    func getForecast(cityId: Int, completion: @escaping (Forecast) -> Void) {
-        weatherDataRepository.fetchForecast(cityId: cityId, completion: completion)
+    func getForecast(cityId: Int)  -> Single<Forecast> {
+        weatherDataRepository.fetchForecast(cityId: cityId)
     }
 }

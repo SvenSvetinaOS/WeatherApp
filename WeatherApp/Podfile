@@ -8,5 +8,6 @@ target 'WeatherApp' do
   # Pods for WeatherApp
   pod 'Kingfisher', '~> 5.0'
   pod 'PureLayout'
+  pod 'RxSwift'
 
 end

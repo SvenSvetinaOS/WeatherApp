@@ -1,13 +1,13 @@
 import UIKit
+import RxSwift
 
 class WeatherListViewController: UIViewController {
     
     var weatherListPresenter: WeatherListPresenter!
-    private let weatherTitle = "Weather"
     let cellHeight: CGFloat = 200.0
     var weather = [WeatherViewModel]()
     let tableView = UITableView()
-    var refreshControl = UIRefreshControl()
+    private let disposeBag = DisposeBag()
     
     convenience init (weatherListPresenter: WeatherListPresenter) {
         self.init()
@@ -16,9 +16,21 @@ class WeatherListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupPresenterCompletions()
         buildViews()
-        weatherListPresenter.getWeather()
+        setupWeather()
+    }
+    
+    func setupWeather() {
+        weatherListPresenter.weather
+            .observeOn(MainScheduler.instance)
+            .subscribe(onSuccess: { [weak self] data in
+                self?.weather = data
+                self?.tableView.reloadData()
+                },
+                       onError: { error in
+                        print(error)
+            })
+            .disposed(by: disposeBag)
     }
     
     func setupTableView() {
@@ -31,7 +43,7 @@ class WeatherListViewController: UIViewController {
         setupTableView()
         
         view.addSubview(tableView)
-        navigationItem.title = weatherTitle
+        navigationItem.title = AppTexts.weatherTitle
         
         tableView.backgroundColor = .lightGray
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -40,17 +52,6 @@ class WeatherListViewController: UIViewController {
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
     }
-    
-        func setupPresenterCompletions() {
-            weatherListPresenter.fetchCompleted = { [weak self] in
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                }
-            }
-            weatherListPresenter.fetchFailed = { error in
-                print(error)
-            }
-        }
     
 }
 

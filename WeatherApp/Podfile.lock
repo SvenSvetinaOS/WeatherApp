@@ -3,20 +3,24 @@ PODS:
     - Kingfisher/Core (= 5.13.0)
   - Kingfisher/Core (5.13.0)
   - PureLayout (3.1.5)
+  - RxSwift (5.0.1)
 
 DEPENDENCIES:
   - Kingfisher (~> 5.0)
   - PureLayout
+  - RxSwift
 
 SPEC REPOS:
   trunk:
     - Kingfisher
     - PureLayout
+    - RxSwift
 
 SPEC CHECKSUMS:
   Kingfisher: 0d334cada987fcddbe9b5cec516406e1ee9d4748
   PureLayout: 9b4ad47b2f0388c84ff534af23d96e720c1b875a
+  RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
 
-PODFILE CHECKSUM: 68afd39563f084b87a2fa7f6ae3889dbd82498b6
+PODFILE CHECKSUM: 234ecde0d1263de92f6710e531f444df3b5c7248
 
 COCOAPODS: 1.8.4
