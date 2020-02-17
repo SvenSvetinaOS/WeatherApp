@@ -24,11 +24,13 @@ class WeatherListViewController: UIViewController {
         weatherListPresenter.weather
             .observeOn(MainScheduler.instance)
             .subscribe(onSuccess: { [weak self] data in
+                self?.weather = data
                 self?.tableView.reloadData()
-                }, onError: { error in
-                    print(error)
+                },
+                       onError: { error in
+                        print(error)
             })
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func setupTableView() {

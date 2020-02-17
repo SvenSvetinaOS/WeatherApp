@@ -13,7 +13,7 @@ extension WeatherDeatilsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = weatherDetailsCollectionView.dequeueReusableCell(withReuseIdentifier: WeatherDetailsCell.identifier, for: indexPath) as! WeatherDetailsCell
         cell.configureWeather(from: weatherDetailsPresenter.weatherViewModel)
-        cell.configureForecast(forecast: weatherDetailsPresenter.forecast)
+        cell.configureForecast(forecast: forecast)
         
         return cell
     }

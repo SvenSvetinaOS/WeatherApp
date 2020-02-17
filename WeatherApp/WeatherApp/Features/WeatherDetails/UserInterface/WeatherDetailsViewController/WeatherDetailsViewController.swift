@@ -5,6 +5,7 @@ import RxSwift
 class WeatherDeatilsViewController: UIViewController {
     var weatherDetailsCollectionView: UICollectionView!
     var weatherDetailsPresenter: WeatherDetailsPresenter!
+    var forecast = [ForecastViewModel]()
     private let disposeBag = DisposeBag()
     
     convenience init (weatherDetailsPresenter: WeatherDetailsPresenter) {
@@ -23,9 +24,11 @@ class WeatherDeatilsViewController: UIViewController {
         weatherDetailsPresenter.forecastData
             .observeOn(MainScheduler.instance)
             .subscribe(onSuccess: { [weak self] data in
+                self?.forecast = data
                 self?.weatherDetailsCollectionView.reloadData()
-                }, onError: { error in
-                    print(error)
+                },
+                       onError: { error in
+                        print(error)
             })
             .disposed(by: disposeBag)
     }

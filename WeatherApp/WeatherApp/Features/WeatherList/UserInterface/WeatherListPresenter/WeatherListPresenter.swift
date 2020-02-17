@@ -10,15 +10,15 @@ class WeatherListPresenter {
         self.navigationService = navigationService
     }
     
-    func mapToViewModels(weather: [Weather]) {
-        currentWeather = weather.map({WeatherViewModel(weather: $0)})
+    func mapToViewModels(weather: [Weather]) -> [WeatherViewModel] {
+        return weather.map{ WeatherViewModel(weather: $0) }
     }
     
-    var weather: Single<MultiCitiesWeather> {
+    var weather: Single<[WeatherViewModel]> {
         return weatherUseCase.getCurrentWeather()
-            .do(onSuccess: { [weak self] data in
-                self?.mapToViewModels(weather: data.list)
-            })
+            .map { [weak self] weatherModel -> [WeatherViewModel] in
+                guard let self = self else { return [] }
+                return self.mapToViewModels(weather: weatherModel.list) }
     }
     
     func weatherCellTapped(weatherViewModel: WeatherViewModel) {

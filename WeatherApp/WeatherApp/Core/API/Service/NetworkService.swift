@@ -13,7 +13,7 @@ class NetworkService {
                 let request = try self.buildRequest(from: route)
                 self.session.dataTask(with: request) { data, response, error in
                     if error != nil {
-                        print(error.debugDescription)
+                        observer(.error(error!))
                     }
                     guard let data = data else { return }
                     do {
