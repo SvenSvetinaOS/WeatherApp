@@ -1,20 +1,13 @@
 import Foundation
 import CoreData
 
-
 extension CDForecast {
-
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CDForecast> {
         return NSFetchRequest<CDForecast>(entityName: "CDForecast")
     }
 
-    @NSManaged public var cnt: Int32
-    @NSManaged public var city: CDCity?
-    @NSManaged public var forecastInfo: NSSet?
-
 }
 
-// MARK: Generated accessors for forecastInfo
 extension CDForecast {
 
     @objc(addForecastInfoObject:)

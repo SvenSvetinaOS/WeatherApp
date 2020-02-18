@@ -1,7 +1,9 @@
 import Foundation
 import CoreData
 
-@objc(CDForecast)
 public class CDForecast: NSManagedObject {
+    @NSManaged public var cnt: Int32
+    @NSManaged public var city: CDCity?
+    @NSManaged public var forecastInfo: NSSet?
 
 }
