@@ -13,7 +13,7 @@ struct WeatherViewModel {
     }
     
     var iconURL: URL? {
-        guard var imageID = weather.weather.first?.icon else { return nil }
+        guard var imageID = weather.weatherInfo.first?.icon else { return nil }
         imageID.append("@2x.png")
         return URL(string: imageID, relativeTo: APIConstants.imageBaseURL)
     }

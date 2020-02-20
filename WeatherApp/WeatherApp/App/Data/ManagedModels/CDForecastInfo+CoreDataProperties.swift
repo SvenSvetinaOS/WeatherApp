@@ -10,16 +10,16 @@ extension CDForecastInfo {
 
 extension CDForecastInfo {
 
-    @objc(addWeatherMainInfoObject:)
-    @NSManaged public func addToWeatherMainInfo(_ value: CDWeatherMainInfo)
+    @objc(addWeatherInfoObject:)
+    @NSManaged public func addToWeatherInfo(_ value: CDWeatherInfo)
 
-    @objc(removeWeatherMainInfoObject:)
-    @NSManaged public func removeFromWeatherMainInfo(_ value: CDWeatherMainInfo)
+    @objc(removeWeatherInfoObject:)
+    @NSManaged public func removeFromWeatherInfo(_ value: CDWeatherInfo)
 
-    @objc(addWeatherMainInfo:)
-    @NSManaged public func addToWeatherMainInfo(_ values: NSSet)
+    @objc(addWeatherInfo:)
+    @NSManaged public func addToWeatherInfo(_ values: NSSet)
 
-    @objc(removeWeatherMainInfo:)
-    @NSManaged public func removeFromWeatherMainInfo(_ values: NSSet)
+    @objc(removeWeatherInfo:)
+    @NSManaged public func removeFromWeatherInfo(_ values: NSSet)
 
 }
