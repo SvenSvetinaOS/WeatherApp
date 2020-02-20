@@ -31,8 +31,8 @@ class WeatherDetailsPresenter {
     
     func updateForecast() {
         weatherUseCase.updateForecast(cityId: weatherViewModel.id)
-        .subscribe()
-        .disposed(by: disposeBag)
+            .subscribe()
+            .disposed(by: disposeBag)
     }
     
 }

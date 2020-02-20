@@ -29,7 +29,8 @@ class WeatherStore: WeatherStoreProtocol {
     
     func updateWeather(weather: [Weather]) -> Completable {
         let request: NSFetchRequest<CDWeather> = CDWeather.fetchRequest()
-        return Completable.create { completable in
+        return Completable.create { [weak self] completable in
+            guard let self = self else { return Disposables.create() }
             self.coreDataContext.perform {
                 weather.forEach {
                     request.predicate = NSPredicate(format: "id = %u", $0.id)
@@ -56,7 +57,8 @@ class WeatherStore: WeatherStoreProtocol {
     
     func updateForecast(forecast: Forecast) -> Completable {
         let request: NSFetchRequest<CDForecast> = CDForecast.fetchRequest()
-        return Completable.create { completable in
+        return Completable.create { [weak self] completable in
+            guard let self = self else { return Disposables.create() }
             self.coreDataContext.perform {
                 request.predicate = NSPredicate(format: "city.id = %u", forecast.city.id)
                 do {

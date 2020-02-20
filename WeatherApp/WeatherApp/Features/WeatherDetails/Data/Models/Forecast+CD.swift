@@ -1,11 +1,13 @@
 import CoreData
 
 extension Forecast {
+    
     init(with entity: CDForecast) {
         city = City(with: entity.city)
         cnt = Int(entity.cnt)
         list = entity.forecastInfo.map { ForecastInfo(with: $0) }
     }
+    
     func toModel(entity: CDForecast, context: NSManagedObjectContext) {
         entity.cnt = Int32(cnt)
         
