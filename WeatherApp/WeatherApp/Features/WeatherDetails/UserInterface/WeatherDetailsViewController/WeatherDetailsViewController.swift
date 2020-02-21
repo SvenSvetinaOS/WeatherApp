@@ -18,12 +18,13 @@ class WeatherDeatilsViewController: UIViewController {
         buildViews()
         setupCollectionView()
         setupForecast()
+        updateForecast()
     }
     
     func setupForecast() {
         weatherDetailsPresenter.forecastData
             .observeOn(MainScheduler.instance)
-            .subscribe(onSuccess: { [weak self] data in
+            .subscribe(onNext: { [weak self] data in
                 self?.forecast = data
                 self?.weatherDetailsCollectionView.reloadData()
                 },
@@ -31,6 +32,10 @@ class WeatherDeatilsViewController: UIViewController {
                         print(error)
             })
             .disposed(by: disposeBag)
+    }
+    
+    func updateForecast() {
+        weatherDetailsPresenter.updateForecast()
     }
     
     func setupCollectionView() {

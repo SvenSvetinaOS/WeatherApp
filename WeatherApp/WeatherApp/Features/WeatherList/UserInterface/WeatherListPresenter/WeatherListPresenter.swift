@@ -4,6 +4,7 @@ class WeatherListPresenter {
     private var weatherUseCase: WeatherUseCaseProtocol
     private var navigationService: NavigationService
     var currentWeather = [WeatherViewModel]()
+    private var disposeBag = DisposeBag()
     
     init(weatherUseCase: WeatherUseCaseProtocol, navigationService: NavigationService) {
         self.weatherUseCase = weatherUseCase
@@ -14,15 +15,21 @@ class WeatherListPresenter {
         return weather.map{ WeatherViewModel(weather: $0) }
     }
     
-    var weather: Single<[WeatherViewModel]> {
-        return weatherUseCase.getCurrentWeather()
+    var weather: Observable<[WeatherViewModel]> {
+        return weatherUseCase.getWeatherData()
             .map { [weak self] weatherModel -> [WeatherViewModel] in
                 guard let self = self else { return [] }
-                return self.mapToViewModels(weather: weatherModel.list) }
+                return self.mapToViewModels(weather: weatherModel) }
     }
     
     func weatherCellTapped(weatherViewModel: WeatherViewModel) {
         navigationService.pushWeatherDetailsViewController(weatherViewModel: weatherViewModel)
+    }
+    
+    func updateWeather() {
+        weatherUseCase.updateWeather()
+            .subscribe()
+            .disposed(by: disposeBag)
     }
     
 }

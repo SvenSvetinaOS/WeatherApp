@@ -29,13 +29,13 @@
         <attribute name="timeUTC" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="clouds" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDClouds" inverseName="forecastInfo" inverseEntity="CDClouds"/>
         <relationship name="forecast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDForecast" inverseName="forecastInfo" inverseEntity="CDForecast"/>
-        <relationship name="weatherInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDWeatherInfo" inverseName="forecastInfo" inverseEntity="CDWeatherInfo"/>
-        <relationship name="weatherMainInfo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDWeatherMainInfo" inverseName="forecastInfo" inverseEntity="CDWeatherMainInfo"/>
+        <relationship name="weatherInfo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDWeatherInfo" inverseName="forecastInfo" inverseEntity="CDWeatherInfo"/>
+        <relationship name="weatherMainInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDWeatherMainInfo" inverseName="forecastInfo" inverseEntity="CDWeatherMainInfo"/>
         <relationship name="wind" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDWind" inverseName="forecastInfo" inverseEntity="CDWind"/>
     </entity>
     <entity name="CDWeather" representedClassName=".CDWeather" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="name" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="clouds" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDClouds" inverseName="weather" inverseEntity="CDClouds"/>
         <relationship name="coord" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDCoordinates" inverseName="weather" inverseEntity="CDCoordinates"/>
         <relationship name="weatherInfo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDWeatherInfo" inverseName="weather" inverseEntity="CDWeatherInfo"/>

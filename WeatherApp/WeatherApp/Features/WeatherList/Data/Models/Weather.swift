@@ -2,7 +2,7 @@ struct Weather: Codable {
     let id: Int
     let name: String
     let coord: Coordinates
-    let weather: [WeatherInfo]
+    let weatherInfo: [WeatherInfo]
     let weatherLocation: WeatherLocation
     let weatherMainInfo: WeatherMainInfo
     let wind: Wind
@@ -12,7 +12,7 @@ struct Weather: Codable {
         case id = "id"
         case name = "name"
         case coord = "coord"
-        case weather = "weather"
+        case weatherInfo = "weather"
         case weatherLocation = "sys"
         case weatherMainInfo = "main"
         case wind = "wind"
