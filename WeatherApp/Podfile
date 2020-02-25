@@ -1,13 +1,26 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'WeatherApp' do
+
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
+  
+  def shared_pods
+  pod 'RxSwift', '~> 5.0'
+  pod 'PureLayout', '3.1.4'
+  pod 'Kingfisher', '~> 5.0'
+end
 
   # Pods for WeatherApp
-  pod 'Kingfisher', '~> 5.0'
-  pod 'PureLayout'
-  pod 'RxSwift'
+  target 'WeatherApp' do
+    shared_pods
+end
 
+target 'WeatherAppTests' do
+  shared_pods
+  pod 'RxSwift'
+  pod 'Quick'
+  pod 'Nimble'
+  pod 'RxTest'
+  pod 'RxBlocking'
 end

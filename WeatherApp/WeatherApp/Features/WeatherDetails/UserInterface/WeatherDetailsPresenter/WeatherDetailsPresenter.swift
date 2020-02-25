@@ -6,7 +6,7 @@ class WeatherDetailsPresenter {
     private let disposeBag = DisposeBag()
     var weatherViewModel: WeatherViewModel
     
-    init(weatherUseCase: WeatherUseCase, weatherViewModel: WeatherViewModel) {
+    init(weatherUseCase: WeatherUseCaseProtocol, weatherViewModel: WeatherViewModel) {
         self.weatherUseCase = weatherUseCase
         self.weatherViewModel = weatherViewModel
     }
