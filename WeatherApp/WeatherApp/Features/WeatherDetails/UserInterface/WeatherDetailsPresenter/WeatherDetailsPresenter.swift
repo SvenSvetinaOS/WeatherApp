@@ -14,7 +14,6 @@ class WeatherDetailsPresenter {
     var forecastData: Observable<[ForecastViewModel]> {
         return weatherUseCase
             .getForecast(cityId: weatherViewModel.id)
-            .asObservable()
             .map { [weak self] forecastModel -> [ForecastViewModel] in
                 guard let self = self else { return [] }
                 return self.mapToViewModels(forecastData: forecastModel)

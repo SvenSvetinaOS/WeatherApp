@@ -7,12 +7,13 @@ class WeatherUseCase: WeatherUseCaseProtocol {
         self.weatherDataRepository = weatherDataRepository
     }
     
-    func getCurrentWeather() -> Single<MultiCitiesWeather> {
-        weatherDataRepository.fetchWeather()
+    func getCurrentWeather() -> Observable<MultiCitiesWeather> {
+        weatherDataRepository.fetchWeather().asObservable()
     }
     
-    func getForecast(cityId: Int)  -> Single<Forecast> {
-        weatherDataRepository.fetchForecast(cityId: cityId)
+    func getForecast(cityId: Int)  -> Observable<Forecast> {
+        //weatherDataRepository.fetchForecast(cityId: cityId)
+        return .never()
     }
     
     func getWeatherData() -> Observable<[Weather]> {

@@ -23,4 +23,6 @@ target 'WeatherAppTests' do
   pod 'Nimble'
   pod 'RxTest'
   pod 'RxBlocking'
+  pod 'RxNimble'
+  pod 'RxCocoa'
 end
