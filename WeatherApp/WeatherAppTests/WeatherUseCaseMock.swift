@@ -3,21 +3,21 @@ import RxCocoa
 @testable import WeatherApp
 
 class WeatherUseCaseMock: WeatherUseCaseProtocol {
-    var currentWeather: PublishSubject<MultiCitiesWeather>!
-    var weatherData = PublishSubject<[Weather]>()
-    var forecast = PublishSubject<Forecast>()
+    var currentWeatherSubject: PublishSubject<MultiCitiesWeather>!
+    var weatherDataSubject = PublishSubject<[Weather]>()
+    var forecastSubject = PublishSubject<Forecast>()
     var forecastData: [Forecast]!
     
     func getCurrentWeather() -> Observable<MultiCitiesWeather> {
-        return currentWeather.asObservable()
+        return currentWeatherSubject.asObservable()
     }
     
     func getForecast(cityId: Int) -> Observable<Forecast> {
-        return forecast.asObservable()
+        return forecastSubject.asObservable()
     }
     
     func getWeatherData() -> Observable<[Weather]> {
-        return weatherData.asObservable()
+        return weatherDataSubject.asObservable()
     }
     
     func getForecastData(cityId: Int) -> Observable<[Forecast]> {

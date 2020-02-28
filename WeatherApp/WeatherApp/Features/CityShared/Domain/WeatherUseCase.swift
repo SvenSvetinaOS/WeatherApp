@@ -12,8 +12,7 @@ class WeatherUseCase: WeatherUseCaseProtocol {
     }
     
     func getForecast(cityId: Int)  -> Observable<Forecast> {
-        //weatherDataRepository.fetchForecast(cityId: cityId)
-        return .never()
+        weatherDataRepository.fetchForecast(cityId: cityId)
     }
     
     func getWeatherData() -> Observable<[Weather]> {
@@ -36,6 +35,7 @@ class WeatherUseCase: WeatherUseCaseProtocol {
     func updateForecast(cityId: Int) -> Completable {
         return weatherDataRepository
             .fetchForecast(cityId: cityId)
+            .asSingle()
             .flatMapCompletable { [weak self] response in
                 guard let self = self else { return Completable.empty() }
                 return self.weatherDataRepository.updateForecast(with: response)

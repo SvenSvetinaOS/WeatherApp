@@ -2,16 +2,14 @@ import Quick
 import Nimble
 import RxSwift
 import RxTest
-import RxBlocking
 import RxNimble
-import XCTest
 @testable import WeatherApp
 
 class WeatherDetailPresenterTests: QuickSpec {
-    var presenter: WeatherDetailsPresenter!
-    var weatherUseCase: WeatherUseCaseMock!
-    var scheduler: TestScheduler!
-    var disposeBag: DisposeBag!
+    private var presenter: WeatherDetailsPresenter!
+    private var weatherUseCase: WeatherUseCaseMock!
+    private var scheduler: TestScheduler!
+    private var disposeBag: DisposeBag!
     
     override func spec() {
         beforeEach {
@@ -24,9 +22,9 @@ class WeatherDetailPresenterTests: QuickSpec {
         }
         
         describe("isForecastAvailable") {
-            it("returns true when mapping a single model to WeatherViewModels") {
+            it("will contain viewModels if there is a model") {
                 self.scheduler.createColdObservable([.next(50, WeatherDataMock.forecast)])
-                    .bind(to: self.weatherUseCase.forecast)
+                    .bind(to: self.weatherUseCase.forecastSubject)
                     .disposed(by: self.disposeBag)
                 let presenterData = self.presenter.forecastData.map { $0.count }
                 
@@ -37,12 +35,12 @@ class WeatherDetailPresenterTests: QuickSpec {
                 expect(result.events).to(equal([.next(50,  2)]))
             }
             
-            it("returns true when mapping multiple models to WeatherViewModels") {
+            it("will contain viewModels if there are multiple models") {
                 self.scheduler.createColdObservable(
                     [.next(50, WeatherDataMock.forecast),
                      .next(60, WeatherDataMock.forecast)
                 ])
-                    .bind(to: self.weatherUseCase.forecast)
+                    .bind(to: self.weatherUseCase.forecastSubject)
                     .disposed(by: self.disposeBag)
                 let presenterData = self.presenter.forecastData.map { $0.count }
                 
@@ -54,8 +52,7 @@ class WeatherDetailPresenterTests: QuickSpec {
             }
             
             it("will be empty when no weather is available") {
-                var forecastData = self.weatherUseCase.forecast.asObservable()
-                forecastData = Observable.empty()
+                self.weatherUseCase.weatherDataSubject.onCompleted()
                 
                 let presenterData = self.presenter.forecastData.map { $0.count }
                 
