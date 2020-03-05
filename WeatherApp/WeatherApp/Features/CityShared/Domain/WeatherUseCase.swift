@@ -7,11 +7,11 @@ class WeatherUseCase: WeatherUseCaseProtocol {
         self.weatherDataRepository = weatherDataRepository
     }
     
-    func getCurrentWeather() -> Single<MultiCitiesWeather> {
-        weatherDataRepository.fetchWeather()
+    func getCurrentWeather() -> Observable<MultiCitiesWeather> {
+        weatherDataRepository.fetchWeather().asObservable()
     }
     
-    func getForecast(cityId: Int)  -> Single<Forecast> {
+    func getForecast(cityId: Int)  -> Observable<Forecast> {
         weatherDataRepository.fetchForecast(cityId: cityId)
     }
     
@@ -35,6 +35,7 @@ class WeatherUseCase: WeatherUseCaseProtocol {
     func updateForecast(cityId: Int) -> Completable {
         return weatherDataRepository
             .fetchForecast(cityId: cityId)
+            .asSingle()
             .flatMapCompletable { [weak self] response in
                 guard let self = self else { return Completable.empty() }
                 return self.weatherDataRepository.updateForecast(with: response)

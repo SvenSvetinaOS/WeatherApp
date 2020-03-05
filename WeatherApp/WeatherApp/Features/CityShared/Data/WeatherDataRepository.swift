@@ -24,7 +24,7 @@ class WeatherDataRepository: WeatherDataRepositoryProtocol {
         return currentWeatherNetworkService.fetchWeather(cityIds: ids)
     }
     
-    func fetchForecast(cityId: Int)  -> Single<Forecast> {
+    func fetchForecast(cityId: Int)  -> Observable<Forecast> {
         return forecastNetworkService.fetchForecast(cityId: cityId)
     }
     

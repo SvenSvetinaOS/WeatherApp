@@ -6,7 +6,7 @@ class WeatherDetailsPresenter {
     private let disposeBag = DisposeBag()
     var weatherViewModel: WeatherViewModel
     
-    init(weatherUseCase: WeatherUseCase, weatherViewModel: WeatherViewModel) {
+    init(weatherUseCase: WeatherUseCaseProtocol, weatherViewModel: WeatherViewModel) {
         self.weatherUseCase = weatherUseCase
         self.weatherViewModel = weatherViewModel
     }
@@ -14,7 +14,6 @@ class WeatherDetailsPresenter {
     var forecastData: Observable<[ForecastViewModel]> {
         return weatherUseCase
             .getForecast(cityId: weatherViewModel.id)
-            .asObservable()
             .map { [weak self] forecastModel -> [ForecastViewModel] in
                 guard let self = self else { return [] }
                 return self.mapToViewModels(forecastData: forecastModel)

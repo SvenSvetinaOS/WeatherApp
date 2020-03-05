@@ -2,7 +2,7 @@ import RxSwift
 
 protocol WeatherDataRepositoryProtocol {
     func fetchWeather() -> Single<MultiCitiesWeather>
-    func fetchForecast(cityId: Int)  -> Single<Forecast>
+    func fetchForecast(cityId: Int)  -> Observable<Forecast>
     func updateWeather(with weather: [Weather]) -> Completable
     func updateForecast(with forecast: Forecast) -> Completable
     func getWeatherData() -> Observable<[Weather]>

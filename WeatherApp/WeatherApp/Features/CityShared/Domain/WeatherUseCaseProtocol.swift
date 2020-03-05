@@ -1,8 +1,8 @@
 import RxSwift
 
 protocol WeatherUseCaseProtocol {
-    func getCurrentWeather() -> Single<MultiCitiesWeather>
-    func getForecast(cityId: Int)  -> Single<Forecast>
+    func getCurrentWeather() -> Observable<MultiCitiesWeather>
+    func getForecast(cityId: Int)  -> Observable<Forecast>
     func getWeatherData() -> Observable<[Weather]>
     func getForecastData(cityId: Int) -> Observable<[Forecast]>
     func updateWeather() -> Completable
